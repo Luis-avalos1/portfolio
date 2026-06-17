@@ -1,0 +1,114 @@
+---
+// Self-hosted variable fonts (zero render-blocking network requests)
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+
+// Resolved URLs (hashed) for the above-the-fold latin subsets, so we can preload them.
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+import spaceGroteskUrl from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Luis Avalos — Software Engineer',
+  description = 'Luis Avalos is a software engineer building AI agents, full-stack platforms, and graphics systems. Creator of Atlas, lore, and A11y Companion.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site).href;
+const siteUrl = new URL('/', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload above-the-fold display + body fonts to avoid an LCP swap flash -->
+    <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={spaceGroteskUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="author" content="Luis Avalos" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Luis Avalos" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Luis Avalos — Software Engineer (AI · Graphics · Systems)" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Luis Avalos',
+        jobTitle: 'Software Engineer',
+        url: siteUrl,
+        image: ogImage,
+        sameAs: [
+          'https://github.com/Luis-avalos1',
+          'https://linkedin.com/in/luis-enrique-avalos',
+        ],
+        alumniOf: 'Kennesaw State University',
+        knowsAbout: ['TypeScript', 'AI agents', 'Computer Graphics', 'React', 'Next.js'],
+      })}
+    />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-paper">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+
+    <!-- Scroll-reveal engine: progressively enhances [data-reveal] elements -->
+    <script is:inline>
+      (() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const els = document.querySelectorAll('[data-reveal]');
+        if (reduce || !('IntersectionObserver' in window)) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

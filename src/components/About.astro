@@ -1,0 +1,63 @@
+---
+import { experience, education } from '../data/site';
+---
+
+<section id="about" class="scroll-mt-14 border-y border-ink bg-ink text-paper">
+  <div class="mx-auto max-w-[1600px] px-[var(--spacing-gutter)] py-20 md:py-28">
+    <p data-reveal class="kicker text-muted-ink">03 — About</p>
+    <h2 class="sr-only">About Luis Avalos</h2>
+
+    <!-- statement — set lighter than the display headlines for editorial light/heavy contrast -->
+    <p data-reveal class="mt-8 max-w-5xl font-display text-3xl font-medium leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
+      I'm a software engineer who likes problems with <span class="text-accent">real stakes</span>. I've shipped production software since 2019 — building the platform that runs my family's business — and I split my time between <span class="text-accent">AI agents</span> and <span class="text-accent">computer graphics</span>.
+    </p>
+    <p data-reveal class="mt-6 max-w-3xl text-lg leading-relaxed text-paper/75">
+      I care about systems that stay correct under pressure: idempotent financial writes, real-time sync, books that can't post without an audit trail, and render loops that hold their frame budget. Kennesaw State CS, 2024.
+    </p>
+
+    <!-- experience + education -->
+    <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <h3 data-reveal class="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-ink">
+          <span class="h-px w-8 bg-line-ink"></span> Experience
+        </h3>
+        <ol class="flex flex-col">
+          {experience.map((job) => (
+            <li data-reveal class="grid grid-cols-1 gap-2 border-t border-line-ink py-6 md:grid-cols-12 md:gap-6">
+              <div class="md:col-span-4">
+                <p class="font-display text-xl font-extrabold leading-tight">{job.org}</p>
+                <p class="mt-1 font-mono text-xs uppercase tracking-widest text-accent">{job.role}</p>
+                <p class="mt-1 font-mono text-xs text-muted-ink">{job.period} · {job.location}</p>
+              </div>
+              <ul class="space-y-2 md:col-span-8">
+                {job.points.map((pt) => (
+                  <li class="flex gap-3 text-sm leading-relaxed text-paper/80">
+                    <span class="mt-1.5 inline-block h-1.5 w-3 shrink-0 bg-accent"></span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <aside class="md:col-span-4">
+        <h3 data-reveal class="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-ink">
+          <span class="h-px w-8 bg-line-ink"></span> Education
+        </h3>
+        <div data-reveal class="border-t border-line-ink py-6">
+          <p class="font-display text-xl font-extrabold leading-tight">{education.school}</p>
+          <p class="mt-1 font-mono text-xs uppercase tracking-widest text-accent">{education.degree}</p>
+          <p class="mt-1 font-mono text-xs text-muted-ink">{education.period} · {education.location}</p>
+        </div>
+        <div data-reveal class="mt-2 border-t border-line-ink py-6">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted-ink">Currently</p>
+          <p class="mt-2 text-sm leading-relaxed text-paper/80">
+            Open to software engineering roles — AI/ML, full-stack, or graphics.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

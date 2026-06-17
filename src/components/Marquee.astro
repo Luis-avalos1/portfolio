@@ -1,0 +1,35 @@
+---
+import { marqueeWords } from '../data/site';
+
+interface Props {
+  variant?: 'ink' | 'paper';
+  reverse?: boolean;
+}
+const { variant = 'ink', reverse = false }: Props = Astro.props;
+
+const isInk = variant === 'ink';
+const items = [...marqueeWords, ...marqueeWords];
+---
+
+<div
+  class:list={[
+    'group relative flex overflow-hidden border-y-2 border-ink py-4 select-none',
+    isInk ? 'bg-ink text-paper' : 'bg-paper text-ink',
+  ]}
+  aria-hidden="true"
+>
+  <div
+    class:list={[
+      'flex w-max shrink-0 items-center gap-8 pr-8 will-change-transform',
+      reverse ? 'animate-marquee-rev' : 'animate-marquee',
+      'motion-safe:group-hover:[animation-play-state:paused]',
+    ]}
+  >
+    {items.map((word) => (
+      <span class="flex items-center gap-8 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-5xl">
+        {word}
+        <span class="text-accent">✦</span>
+      </span>
+    ))}
+  </div>
+</div>

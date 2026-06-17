@@ -1,0 +1,55 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+
+const links = [
+  { label: 'Email', href: `mailto:${site.email}`, note: site.email },
+  { label: 'GitHub', href: site.github, note: `@${site.githubHandle}` },
+  { label: 'LinkedIn', href: site.linkedin, note: 'luis-enrique-avalos' },
+  { label: 'Résumé', href: site.resume, note: 'PDF ↓' },
+];
+---
+
+<section id="contact" class="scroll-mt-14 border-t border-ink">
+  <div class="mx-auto max-w-[1600px] px-[var(--spacing-gutter)] py-20 md:py-28">
+    <p data-reveal class="kicker text-muted">04 — Contact</p>
+
+    <h2 data-reveal class="display-x mt-6 text-mega leading-[0.82]">
+      Let’s<br />Build
+    </h2>
+
+    <a
+      data-reveal
+      href={`mailto:${site.email}`}
+      class="group mt-10 inline-flex max-w-full items-center gap-3 font-display text-xl font-extrabold tracking-tight [overflow-wrap:anywhere] sm:text-4xl md:text-5xl"
+    >
+      <span class="border-b-4 border-transparent transition-colors duration-200 group-hover:border-accent">{site.email}</span>
+      <span class="text-ink transition-transform duration-200 group-hover:translate-x-2 group-hover:-translate-y-1" aria-hidden="true">↗</span>
+    </a>
+
+    <ul data-reveal class="mt-14 grid grid-cols-2 gap-px border border-ink bg-ink sm:grid-cols-4">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            target={l.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={l.href.startsWith('mailto') ? undefined : 'noopener'}
+            class="flex h-full flex-col gap-2 bg-paper p-5 transition-colors duration-200 hover:bg-accent"
+          >
+            <span class="font-display text-lg font-extrabold uppercase">{l.label}</span>
+            <span class="font-mono text-xs text-muted">{l.note}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- footer / colophon -->
+  <footer class="border-t border-ink">
+    <div class="mx-auto flex max-w-[1600px] flex-col gap-4 px-[var(--spacing-gutter)] py-8 font-mono text-xs uppercase tracking-widest text-muted sm:flex-row sm:items-center sm:justify-between">
+      <span>© {year} Luis Avalos</span>
+      <span class="hidden sm:inline">Built with Astro · Tailwind · No template</span>
+      <a href="#top" class="link-underline inline-flex items-center gap-1.5 text-ink">Back to top ↑</a>
+    </div>
+  </footer>
+</section>

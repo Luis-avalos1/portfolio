@@ -1,0 +1,25 @@
+{
+  "name": "luis-avalos-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/archivo": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.10",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^5.18.2",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.1.0"
+  }
+}

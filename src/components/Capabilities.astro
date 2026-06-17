@@ -1,0 +1,34 @@
+---
+import { skills } from '../data/site';
+---
+
+<section id="capabilities" class="mx-auto max-w-[1600px] scroll-mt-14 px-[var(--spacing-gutter)] py-16 md:py-24">
+  <div data-reveal class="mb-12 flex items-end justify-between gap-4">
+    <div>
+      <p class="kicker text-muted">02 — Capabilities</p>
+      <h2 class="display-x mt-3 text-huge leading-[0.9]">The Toolkit</h2>
+    </div>
+    <p class="hidden max-w-xs pb-2 text-right font-mono text-xs leading-relaxed text-muted sm:block">
+      Equally at home in a TypeScript monorepo and a C++ render loop.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+    {skills.map((group, i) => (
+      <div data-reveal class="rule-thick pt-4" style={`--reveal-delay:${i * 70}ms`}>
+        <div class="mb-4 flex items-baseline justify-between">
+          <h3 class="font-display text-lg font-extrabold uppercase tracking-tight">{group.label}</h3>
+          <span class="font-mono text-xs text-muted">0{i + 1}</span>
+        </div>
+        <ul class="flex flex-col gap-2">
+          {group.items.map((item) => (
+            <li class="group flex items-center gap-2 font-mono text-sm">
+              <span class="text-ink transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  theme: 'paper' | 'ink';
+}
+const { project, theme }: Props = Astro.props;
+const ink = theme === 'ink';
+
+// The primary link: live if present, else public GitHub. Private repos don't link.
+const primary = project.links.live ?? (project.repoPrivate ? undefined : project.links.github);
+const NameTag = primary ? 'a' : 'div';
+---
+
+<article
+  class:list={[
+    'scroll-mt-16 border-t border-ink',
+    ink ? 'bg-ink text-paper' : 'bg-paper text-ink',
+  ]}
+  id={project.id}
+>
+  <div class="mx-auto max-w-[1600px] px-[var(--spacing-gutter)] py-14 md:py-20">
+    <!-- meta header -->
+    <div
+      data-reveal
+      class:list={[
+        'mb-7 flex items-center justify-between border-b pb-3 font-mono text-[0.7rem] uppercase tracking-[0.2em] sm:text-xs',
+        ink ? 'border-line-ink text-muted-ink' : 'border-line text-muted',
+      ]}
+    >
+      <span><span class:list={[ink ? 'text-accent' : 'text-ink']}>[{project.num}]</span> · {project.category}</span>
+      <span>{project.role} · {project.year}</span>
+    </div>
+
+    <!-- headline left, stat/stack rail right (top-aligned to fill the upper-right) -->
+    <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-12 md:items-start">
+      <div class="md:col-span-7">
+        <NameTag
+          {...(primary ? { href: primary, target: '_blank', rel: 'noopener' } : {})}
+          data-reveal
+          class:list={['group block', primary && 'cursor-pointer']}
+        >
+          <h3 class="display-x flex flex-wrap items-baseline gap-x-5 text-huge leading-[0.9] transition-transform duration-300 ease-[var(--ease-brutal)] md:text-giant md:group-hover:translate-x-3">
+            {project.name}
+            {primary && (
+              <span class:list={['text-[0.3em] opacity-0 transition-opacity duration-300 group-hover:opacity-100', ink ? 'text-accent' : 'text-ink']} aria-hidden="true">↗</span>
+            )}
+          </h3>
+        </NameTag>
+        <p class="mt-4 max-w-3xl font-sans text-lg leading-snug sm:text-2xl">{project.tagline}</p>
+
+        <p class:list={['mt-8 max-w-2xl text-base leading-relaxed sm:text-lg', ink ? 'text-paper/85' : 'text-ink/85']}>{project.blurb}</p>
+        <ul class="mt-6 space-y-3">
+          {project.highlights.map((h) => (
+            <li class="flex gap-3 text-sm leading-relaxed sm:text-[0.95rem]">
+              <span class:list={['mt-1.5 inline-block h-1.5 w-3 shrink-0', ink ? 'bg-accent' : 'bg-ink']}></span>
+              <span class:list={[ink ? 'text-paper/80' : 'text-ink/80']}>{h}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside data-reveal class="flex flex-col gap-6 md:col-span-4 md:col-start-9">
+        {project.metric && (
+          <div class:list={['border-t-4 pt-3', ink ? 'border-paper' : 'border-ink']}>
+            <p class:list={['font-mono text-[0.65rem] uppercase tracking-[0.2em]', ink ? 'text-muted-ink' : 'text-muted']}>Highlight</p>
+            <p class="mt-2 font-display text-2xl font-extrabold leading-[1.05]">{project.metric}</p>
+          </div>
+        )}
+
+        <div>
+          <p class:list={['mb-2 font-mono text-[0.65rem] uppercase tracking-[0.2em]', ink ? 'text-muted-ink' : 'text-muted']}>Stack</p>
+          <ul class="flex flex-wrap gap-1.5">
+            {project.stack.map((s) => (
+              <li class:list={['border px-2 py-1 font-mono text-[0.7rem]', ink ? 'border-line-ink' : 'border-line']}>{s}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-widest">
+          {project.links.live && (
+            <a href={project.links.live} target="_blank" rel="noopener" class:list={['inline-flex items-center gap-1.5 border-2 px-3 py-2 transition-colors duration-200', ink ? 'border-paper hover:bg-accent hover:text-ink hover:border-accent' : 'border-ink bg-ink text-paper hover:bg-accent hover:text-ink']}>Live <span aria-hidden="true">↗</span></a>
+          )}
+          {!project.repoPrivate && project.links.github && (
+            <a href={project.links.github} target="_blank" rel="noopener" class:list={['link-underline inline-flex items-center gap-1.5 px-1 py-2', ink ? 'text-paper' : 'text-ink']}>GitHub <span aria-hidden="true">↗</span></a>
+          )}
+          {project.repoPrivate && (
+            <span class:list={['inline-flex items-center gap-1.5 border px-3 py-2', ink ? 'border-line-ink text-muted-ink' : 'border-line text-muted']} title="Collaborative client project — available on request">Private repo</span>
+          )}
+          {project.needsDemo && (
+            <span class:list={['inline-flex items-center gap-1.5 px-1 py-2 text-[0.65rem]', ink ? 'text-accent' : 'text-muted']}><span aria-hidden="true">●</span> demo soon</span>
+          )}
+        </div>
+      </aside>
+    </div>
+  </div>
+</article>

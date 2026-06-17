@@ -1,0 +1,40 @@
+---
+import { featured, more } from '../data/projects';
+import ProjectRow from './ProjectRow.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="work" class="scroll-mt-14">
+  <!-- section header -->
+  <div class="mx-auto max-w-[1600px] px-[var(--spacing-gutter)] pb-8 pt-20 md:pt-28">
+    <div data-reveal class="flex items-end justify-between gap-4">
+      <div>
+        <p class="kicker text-muted">01 — Projects</p>
+        <h2 class="display-x mt-3 text-huge leading-[0.9]">Selected<br />Work</h2>
+      </div>
+      <p class="hidden max-w-xs pb-2 text-right font-mono text-xs leading-relaxed text-muted sm:block">
+        Six projects across AI agents, production web apps, developer tooling, real-time graphics, and computer vision.
+      </p>
+    </div>
+  </div>
+
+  <!-- featured: alternating paper / ink full-width bands -->
+  {featured.map((project, i) => (
+    <ProjectRow project={project} theme={i % 2 === 1 ? 'ink' : 'paper'} />
+  ))}
+
+  <!-- more work (only renders when there are secondary projects) -->
+  {more.length > 0 && (
+    <div class="mx-auto max-w-[1600px] border-t border-ink px-[var(--spacing-gutter)] py-16 md:py-20">
+      <div data-reveal class="mb-8 flex items-end justify-between">
+        <h2 class="display-x text-huge leading-[0.9]">Also Built</h2>
+        <p class="kicker pb-2 text-muted">+ {more.length} more</p>
+      </div>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {more.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </div>
+  )}
+</section>
