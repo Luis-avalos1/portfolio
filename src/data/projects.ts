@@ -17,16 +17,6 @@ export interface Project {
   /** repo lives under a collaborator's account / not public — show a tag instead of a dead link */
   repoPrivate?: boolean;
   needsDemo?: boolean;
-  /** optional demo media, shown as a framed panel in the project row */
-  media?: {
-    type: 'video' | 'image';
-    src: string;
-    poster?: string;
-    /** intrinsic "W / H" so the frame reserves space and never shifts layout */
-    ratio?: string;
-    alt: string;
-    caption: string;
-  };
 }
 
 /* ---- FEATURED: large editorial rows ---- */
@@ -93,14 +83,6 @@ export const featured: Project[] = [
       github: 'https://github.com/Luis-avalos1/A11y-Companion',
       live: 'https://luis-avalos1.github.io/A11y-Companion/',
     },
-    media: {
-      type: 'video',
-      src: '/demos/a11y.mp4',
-      poster: '/demos/a11y.jpg',
-      ratio: '1280 / 800',
-      alt: 'A11y Companion accessibility toolbar running live on a sample article',
-      caption: '~90s guided tour · the real toolbar, running in-browser',
-    },
   },
   {
     id: 'lore',
@@ -143,14 +125,6 @@ export const featured: Project[] = [
       github: 'https://github.com/Luis-avalos1/geospatial-terrain-importer',
       live: 'https://luis-avalos1.github.io/geospatial-terrain-importer/',
     },
-    media: {
-      type: 'video',
-      src: '/demos/terrain.mp4',
-      poster: '/demos/terrain.jpg',
-      ratio: '1280 / 720',
-      alt: 'Terrain Importer desktop app loading a Mount Everest DEM and orbiting the LOD mesh',
-      caption: 'Desktop engine · DEM → LOD mesh, hillshade, vertical exaggeration',
-    },
   },
   {
     id: 'lowlight',
@@ -172,14 +146,6 @@ export const featured: Project[] = [
     links: {
       github: 'https://github.com/Luis-avalos1/Object-Detection-in-Low-Light-Environments',
       live: 'https://luis-avalos1.github.io/Object-Detection-in-Low-Light-Environments/',
-    },
-    media: {
-      type: 'video',
-      src: '/demos/lowlight.mp4',
-      poster: '/demos/lowlight.jpg',
-      ratio: '1280 / 720',
-      alt: 'Low-light detection showcase: an enhancement wipe, the detector drawing boxes, and live metrics',
-      caption: 'Enhancement wipe → detector boxes → live COCO-style metrics',
     },
   },
 ];
