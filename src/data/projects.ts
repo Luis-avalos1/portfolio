@@ -16,6 +16,8 @@ export interface Project {
   };
   /** repo lives under a collaborator's account / not public — show a tag instead of a dead link */
   repoPrivate?: boolean;
+  /** tooltip on the "Private repo" tag; defaults to the collaborative-project note */
+  privateNote?: string;
   needsDemo?: boolean;
 }
 
@@ -60,6 +62,8 @@ export const featured: Project[] = [
     ],
     metric: '~57% smaller initial JS · live billing real clients',
     links: { github: 'https://github.com/Luis-avalos1/paper-trail' },
+    repoPrivate: true,
+    privateNote: 'In-production billing app — source kept private',
     needsDemo: true,
   },
   {
@@ -68,7 +72,7 @@ export const featured: Project[] = [
     name: 'A11y Companion',
     tagline: 'A personal accessibility toolbar that follows you across any website',
     blurb:
-      'A Chrome MV3 extension that injects a Shadow-DOM accessibility toolbar onto every page: dyslexia fonts, true colorblindness simulation, hover-to-read screen reader, chunked read-aloud, voice commands, and on-device AI summaries. Began as a capstone for nonprofit Lasagna Love.',
+      'A Chrome MV3 extension that injects a Shadow-DOM accessibility toolbar onto every page: dyslexia fonts, reading mode, a pointer-following reading ruler, true colorblindness simulation, hover-to-read screen reader, chunked read-aloud, voice commands, and on-device AI summaries plus plain-language rewrites. Ships presets and per-site settings that sync across sites and Chrome installs. Began as a capstone for nonprofit Lasagna Love.',
     category: 'Web',
     year: '2024—26',
     role: 'Solo · ~99 commits',
@@ -76,7 +80,7 @@ export const featured: Project[] = [
     highlights: [
       'Real protanopia/deuteranopia/tritanopia simulation via injected SVG feColorMatrix filters — not the usual hue-rotate hack.',
       'Works around Chrome’s ~15s speech stall by chunking page text into sentences with a self-advancing, highlightable queue.',
-      'On-device AI summaries run entirely locally through Chrome’s Gemini Nano — page text never leaves the device.',
+      'On-device AI summaries and plain-language rewrites run entirely locally through Chrome’s Gemini Nano — page text never leaves the device.',
     ],
     metric: '~1.7K lines hand-written · 20+ voice commands',
     links: {
@@ -110,7 +114,7 @@ export const featured: Project[] = [
     name: 'Geospatial Terrain Importer',
     tagline: 'GeoTIFF elevation data → interactive 3D terrain in OpenGL',
     blurb:
-      'A C++17/Qt6 desktop app that imports GDAL-supported elevation rasters, converts them to LOD-tiered triangle meshes, and renders them in real time in an OpenGL 4.1 viewport with orbit camera, height colormap, and satellite overlay. Ships with a Python toolchain for headless batch conversion.',
+      'A C++17/Qt6 desktop app that imports GDAL-supported elevation rasters, converts them to LOD-tiered triangle meshes, and renders them in real time in an OpenGL 4.1 viewport with orbit camera, height colormap, live vertical exaggeration, wireframe/normal debug views, and satellite overlay. Ships a Python toolchain for headless batch conversion, plus an interactive Three.js/WebGL showcase that drapes the pipeline’s real terrain output (Fuji, SF, Grand Canyon, Everest) in-browser with sun/shadows and your own GeoTIFF upload.',
     category: 'Graphics',
     year: '2026',
     role: 'Solo',
