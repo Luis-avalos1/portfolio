@@ -28,3 +28,7 @@ pnpm-debug.log*
 # personal notes — kept local, never published
 TODO.md
 .vercel
+
+# moved from resume/ — kept local, never published
+.claude/
+res_files/
