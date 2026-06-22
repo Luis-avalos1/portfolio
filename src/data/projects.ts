@@ -17,6 +17,16 @@ export interface Project {
   /** repo lives under a collaborator's account / not public — show a tag instead of a dead link */
   repoPrivate?: boolean;
   needsDemo?: boolean;
+  /** optional demo media, shown as a framed panel in the project row */
+  media?: {
+    type: 'video' | 'image';
+    src: string;
+    poster?: string;
+    /** intrinsic "W / H" so the frame reserves space and never shifts layout */
+    ratio?: string;
+    alt: string;
+    caption: string;
+  };
 }
 
 /* ---- FEATURED: large editorial rows ---- */
@@ -79,8 +89,18 @@ export const featured: Project[] = [
       'On-device AI summaries run entirely locally through Chrome’s Gemini Nano — page text never leaves the device.',
     ],
     metric: '~1.7K lines hand-written · 20+ voice commands',
-    links: { github: 'https://github.com/Luis-avalos1/accessibility-plugin' },
-    needsDemo: true,
+    links: {
+      github: 'https://github.com/Luis-avalos1/A11y-Companion',
+      live: 'https://luis-avalos1.github.io/A11y-Companion/',
+    },
+    media: {
+      type: 'video',
+      src: '/demos/a11y.mp4',
+      poster: '/demos/a11y.jpg',
+      ratio: '1280 / 800',
+      alt: 'A11y Companion accessibility toolbar running live on a sample article',
+      caption: '~90s guided tour · the real toolbar, running in-browser',
+    },
   },
   {
     id: 'lore',
@@ -119,28 +139,48 @@ export const featured: Project[] = [
       'Distance-based LOD pyramid selected per-frame from camera distance, with off-thread import keeping the Qt UI responsive.',
     ],
     metric: '~2.5K LOC C++ · 4-level LOD · 4× MSAA',
-    links: { github: 'https://github.com/Luis-avalos1/geospatial-terrain-importer' },
-    needsDemo: true,
+    links: {
+      github: 'https://github.com/Luis-avalos1/geospatial-terrain-importer',
+      live: 'https://luis-avalos1.github.io/geospatial-terrain-importer/',
+    },
+    media: {
+      type: 'video',
+      src: '/demos/terrain.mp4',
+      poster: '/demos/terrain.jpg',
+      ratio: '1280 / 720',
+      alt: 'Terrain Importer desktop app loading a Mount Everest DEM and orbiting the LOD mesh',
+      caption: 'Desktop engine · DEM → LOD mesh, hillshade, vertical exaggeration',
+    },
   },
   {
     id: 'lowlight',
     num: '06',
     name: 'Low-Light Object Detection',
-    tagline: 'Benchmarking image enhancement for YOLOv5 detection in the dark',
+    tagline: 'Does image enhancement actually help object detection in the dark?',
     blurb:
-      'A computer-vision study quantifying how classical image-enhancement methods affect object-detection accuracy in low light. It runs YOLOv5 over the 7,363-image ExDark dataset (12 classes), applies CLAHE, multi-scale Retinex, gamma correction and histogram equalization, and scores each variant with a from-scratch precision/recall/AP evaluation harness.',
+      'A research-grade rebuild of a course project into a reproducible low-light detection benchmark on the 7,363-image ExDark dataset. It diagnoses why the original “enhancement barely helps” result was uninterpretable — a broken evaluation metric and two silently mis-mapped classes — then re-answers the question with a correct COCO-style evaluator, five detectors, twelve enhancement methods, and an honest fine-tuning ablation.',
     category: 'ML',
-    year: '2024—25',
+    year: '2024—26',
     role: 'Solo',
-    stack: ['Python', 'PyTorch', 'YOLOv5', 'OpenCV', 'NumPy', 'scikit-learn'],
+    stack: ['Python', 'PyTorch', 'Ultralytics YOLO', 'RT-DETR', 'OpenCV', 'NumPy'],
     highlights: [
-      'Hand-implemented a weighted Multi-Scale Retinex (three sigma scales in the log domain) plus CLAHE, SSR, and gamma correction in OpenCV/NumPy.',
-      'Wrote a complete detection-evaluation harness from scratch: vectorized IoU, greedy TP/FP matching at IoU 0.5, precision–recall curves, and average precision.',
-      'Bridged datasets by mapping ExDark’s 12 classes onto COCO indices so a COCO-pretrained YOLOv5 could be scored against ExDark ground truth at scale.',
+      'Traced the original “enhancement doesn’t help” conclusion to three flaws — a per-image AP that collapsed the PR curve, plus Cup and Boat silently mapped to ~0 AP — then rebuilt a pooled COCO-style evaluator (101-pt AP, mAP@0.5 and mAP@[.5:.95], bootstrap CIs) cross-checked against Ultralytics val().',
+      'Swept a detector × enhancement grid — YOLOv8/11, YOLOv5(u) and RT-DETR against 12 methods (CLAHE, MSR, MSRCR, dark-channel-prior, …) — then fine-tuned a native 12-class detector on ExDark to show fine-tuning is the dominant lever, not enhancement.',
+      'Made the study reproducible end to end: a deterministic class-stratified split, known-answer unit tests for the evaluator and enhancers, and a one-command CLI pipeline (split → benchmark → fine-tune → report → animated showcase).',
     ],
-    metric: '7,363 low-light images · 50K+ result images',
-    links: { github: 'https://github.com/Luis-avalos1/Object-Detection-in-Low-Light-Environments' },
-    needsDemo: true,
+    metric: '7,363 images · 5 detectors × 12 enhancers',
+    links: {
+      github: 'https://github.com/Luis-avalos1/Object-Detection-in-Low-Light-Environments',
+      live: 'https://luis-avalos1.github.io/Object-Detection-in-Low-Light-Environments/',
+    },
+    media: {
+      type: 'video',
+      src: '/demos/lowlight.mp4',
+      poster: '/demos/lowlight.jpg',
+      ratio: '1280 / 720',
+      alt: 'Low-light detection showcase: an enhancement wipe, the detector drawing boxes, and live metrics',
+      caption: 'Enhancement wipe → detector boxes → live COCO-style metrics',
+    },
   },
 ];
 
