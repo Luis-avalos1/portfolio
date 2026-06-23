@@ -12,7 +12,7 @@ export const site = {
 };
 
 export const tagline =
-  'I build AI agents, full-stack platforms, and graphics systems — from a Claude bookkeeping agent to a real-time OpenGL terrain renderer.';
+  'I build software that has to be right. Lately that’s a Claude agent that keeps a small business’s books, a platform running billing for a real company, and a real-time terrain renderer in C++.';
 
 export const marqueeWords = [
   'AI AGENTS',
@@ -62,17 +62,17 @@ export const experience: Job[] = [
   {
     role: 'Software Engineer',
     org: 'Avalos Drywall LLC',
-    period: '2019 — Present',
+    period: '2019-Present',
     location: 'Remote · Part-time',
     points: [
-      'Built and operate PaperTrail, the platform that handles all of the company’s invoicing, payment tracking, and revenue analytics — replacing a manual paper workflow.',
+      'Built and operate PaperTrail, the platform that handles all of the company’s invoicing, payment tracking, and revenue analytics, replacing a manual paper workflow.',
       'Architected a real-time React 19 + TypeScript data layer on Firebase with isolated dev/production environments and auto-deploys.',
     ],
   },
   {
     role: 'Software Engineer Intern',
     org: 'Outlier.AI',
-    period: 'May — Aug 2024',
+    period: 'May-Aug 2024',
     location: 'Remote',
     points: [
       'Improved model performance ~15% by refactoring and enhancing ML algorithms in AI training pipelines.',

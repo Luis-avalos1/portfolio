@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* =========================================================================
-   LUIS AVALOS — BRUTALIST EDITORIAL DESIGN SYSTEM
+   LUIS AVALOS / BRUTALIST EDITORIAL DESIGN SYSTEM
    Black ink on warm paper, one high-voltage accent, oversized grotesque type.
    ========================================================================= */
 
@@ -16,7 +16,7 @@
   --color-paper-2: #e9e6dc; /* slightly deeper paper for panels */
   --color-ink: #0a0a0a;     /* near-black */
   --color-ink-2: #1c1c1a;   /* raised ink panels */
-  --color-accent: #d7ff00;  /* acid lime — high voltage */
+  --color-accent: #d7ff00;  /* acid lime, high voltage */
   --color-accent-deep: #b6d800;
 
   /* ---- Derived neutrals ---- */
@@ -113,7 +113,7 @@
     outline-offset: 3px;
   }
 
-  /* On dark (ink) surfaces the ink outline is invisible — switch to the high-voltage
+  /* On dark (ink) surfaces the ink outline is invisible, so switch to the high-voltage
      accent, which hits 17:1 on ink. (outline is not clipped by overflow, unlike box-shadow.) */
   .bg-ink :focus-visible {
     outline-color: var(--color-accent);
@@ -138,7 +138,7 @@
   font-weight: 500;
 }
 
-/* Expanded display headline — exploit Archivo's width axis */
+/* Expanded display headline, exploiting Archivo's width axis */
 @utility display-x {
   font-family: var(--font-display);
   font-variation-settings: "wght" 800, "wdth" 120;
