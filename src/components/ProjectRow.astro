@@ -86,7 +86,7 @@ const NameTag = repoLink ? 'a' : 'div';
             <a href={project.links.github} target="_blank" rel="noopener" class:list={['link-underline inline-flex items-center gap-1.5 px-1 py-2', ink ? 'text-paper' : 'text-ink']}>GitHub <span aria-hidden="true">↗</span></a>
           )}
           {project.repoPrivate && (
-            <span class:list={['inline-flex items-center gap-1.5 border px-3 py-2', ink ? 'border-line-ink text-muted-ink' : 'border-line text-muted']} title={project.privateNote ?? 'Collaborative client project — available on request'}>Private repo</span>
+            <span class:list={['inline-flex items-center gap-1.5 border px-3 py-2', ink ? 'border-line-ink text-muted-ink' : 'border-line text-muted']} title={project.privateNote ?? 'Collaborative client project, available on request'}>Private repo</span>
           )}
           {project.needsDemo && (
             <span class:list={['inline-flex items-center gap-1.5 px-1 py-2 text-[0.65rem]', ink ? 'text-accent' : 'text-muted']}><span aria-hidden="true">●</span> demo soon</span>
