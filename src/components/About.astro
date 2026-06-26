@@ -7,13 +7,32 @@ import { experience, education } from '../data/site';
     <p data-reveal class="kicker text-muted-ink">03 / About</p>
     <h2 class="sr-only">About Luis Avalos</h2>
 
-    <!-- statement: set lighter than the display headlines for editorial light/heavy contrast -->
-    <p data-reveal class="mt-8 max-w-5xl font-display text-3xl font-medium leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
-      I'm a software engineer who likes problems with <span class="text-accent">real stakes</span>. I taught myself to code and was shipping production software for a real company in 2019, a year before I started a CS degree to go deeper. These days I split my time between <span class="text-accent">AI agents</span> and <span class="text-accent">computer graphics</span>.
-    </p>
-    <p data-reveal class="mt-6 max-w-3xl text-lg leading-relaxed text-paper/75">
-      I care about systems that stay correct under pressure: idempotent financial writes, real-time sync, books that can't post without an audit trail, and render loops that hold their frame budget. Kennesaw State CS, 2024.
-    </p>
+    <!-- intro: statement + body on the left, portrait on the right -->
+    <div class="mt-8 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-12 md:items-center md:gap-12">
+      <div class="md:col-span-8">
+        <!-- statement: set lighter than the display headlines for editorial light/heavy contrast -->
+        <p data-reveal class="font-display text-3xl font-medium leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
+          I'm a software engineer who likes problems with <span class="text-accent">real stakes</span>. I taught myself to code and was shipping production software for a real company in 2019, a year before I started a CS degree to go deeper. These days I split my time between <span class="text-accent">AI agents</span> and <span class="text-accent">computer graphics</span>.
+        </p>
+        <p data-reveal class="mt-6 max-w-2xl text-lg leading-relaxed text-paper/75">
+          I care about systems that stay correct under pressure: idempotent financial writes, real-time sync, books that can't post without an audit trail, and render loops that hold their frame budget. Kennesaw State CS, 2024.
+        </p>
+      </div>
+
+      <!-- portrait (keep a vertical crop) -->
+      <div data-reveal class="md:col-span-4" style="--reveal-delay:160ms">
+        <figure class="group relative mx-auto w-2/3 max-w-[18rem] md:w-full md:max-w-none">
+          <span class="absolute inset-0 translate-x-2.5 translate-y-2.5 bg-accent transition-transform duration-500 group-hover:scale-105" aria-hidden="true"></span>
+          <img
+            src="/portrait.jpg"
+            alt="Luis Avalos"
+            width="600"
+            height="750"
+            class="relative aspect-[4/5] w-full border-2 border-paper object-cover grayscale contrast-[1.05] shadow-none transition-[filter,transform,box-shadow] duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:shadow-[0_0_2.5rem_0.25rem_var(--color-accent)]"
+          />
+        </figure>
+      </div>
+    </div>
 
     <!-- experience + education -->
     <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-12">

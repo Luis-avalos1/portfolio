@@ -10,26 +10,35 @@ import { site, tagline } from '../data/site';
       <span class="hidden sm:inline">Portfolio / Vol. 01 / 2026</span>
     </span>
     <span class="hidden sm:inline">{site.location} · 37.77°N</span>
-    {site.available && (
-      <span class="inline-flex items-center gap-2">
-        <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-deep opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-deep"></span>
-        </span>
-        Available for work
-      </span>
-    )}
   </div>
 
-  <!-- name -->
-  <div class="flex flex-1 flex-col justify-center py-10">
-    <p data-reveal class="kicker mb-4 sm:mb-6">Software Engineer / AI · Graphics · Systems</p>
-    <h1 class="display-x leading-[0.82] text-ink">
-      <span data-reveal class="block text-mega" style="--reveal-delay:60ms">Luis</span>
-      <span data-reveal class="block text-mega" style="--reveal-delay:140ms">
-        Aval<span class="relative inline-block">os<span class="absolute -bottom-1 left-0 h-[0.1em] w-full bg-accent"></span></span>
-      </span>
-    </h1>
+  <!-- name + portrait -->
+  <div class="flex flex-1 items-center py-10">
+    <div class="grid w-full grid-cols-1 items-center gap-10 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <p data-reveal class="kicker mb-4 sm:mb-6">Software Engineer / AI · Graphics · Systems</p>
+        <h1 class="display-x leading-[0.82] text-ink" style="font-size:clamp(3rem, 12vw, 13rem)">
+          <span data-reveal class="block" style="--reveal-delay:60ms">Luis</span>
+          <span data-reveal class="block" style="--reveal-delay:140ms">
+            Aval<span class="relative inline-block">os<span class="absolute -bottom-1 left-0 h-[0.1em] w-full bg-accent"></span></span>
+          </span>
+        </h1>
+      </div>
+
+      <!-- portrait (keep a vertical crop) -->
+      <div data-reveal class="md:col-span-4" style="--reveal-delay:220ms">
+        <figure class="group relative mx-auto w-3/5 max-w-[16rem] sm:w-1/2 md:w-full md:max-w-[17rem]">
+          <span class="absolute inset-0 translate-x-2 translate-y-2 rounded-[50%] bg-accent transition-transform duration-500 group-hover:scale-105" aria-hidden="true"></span>
+          <img
+            src="/portrait.jpg"
+            alt="Luis Avalos"
+            width="600"
+            height="800"
+            class="relative aspect-[4/5] w-full rounded-[50%] border-2 border-ink object-cover grayscale contrast-[1.05] shadow-none transition-[filter,transform,box-shadow] duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:shadow-[0_0_2.5rem_0.25rem_var(--color-accent)]"
+          />
+        </figure>
+      </div>
+    </div>
   </div>
 
   <!-- intro grid -->
